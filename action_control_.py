@@ -37,15 +37,16 @@ while(True):
 	    x,y,w,h=faces[0]
 	    cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
 	    	 
-	      
-	    if x<150:
-		print x,y," - forward"
+	    centrex,centrey=x+w/2,y+h/2
+	    print centrex,centrey
+	    if centrex<250:
+		print " - forward"
 		forward()
-	    elif x>300:
-		print x,y," - back"
+	    elif centrex>350:
+		print " - back"
 		back()
 	    else:
-		print x,y," - stop"
+		print " - stop"
 		stop()
 	
     else:
