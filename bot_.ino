@@ -35,9 +35,7 @@ void loop()
         set_speed(1,0);
       else if(xyz=="back")
         set_speed(0,1);
-      else
-        set_speed(0,0);
-                
+  
        Serial.flush();
     }
 }
