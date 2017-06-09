@@ -2,21 +2,11 @@ import cv2
 import serial
 import time
 
-ser= serial.Serial('/dev/ttyUSB1',57600)
+ser= serial.Serial('/dev/ttyUSB0',57600)
 
-def stop():
-	global ser
-	ser.write('stop')
-	time.sleep(0.01)
 
-def forward():
-	global ser
-	ser.write('forward')
-	time.sleep(0.01)
-def back():
-	global ser
-	ser.write('back')
-	time.sleep(0.01)
+cmd='stop'
+
 
 cascadePath = "haarcascade_frontalface_default.xml"
 
@@ -41,13 +31,14 @@ while(True):
 	    print centrex,centrey
 	    if centrex<250:
 		print " - forward"
-		forward()
+		cmd='forward\r'
 	    elif centrex>350:
 		print " - back"
-		back()
+		cmd='back\r'
 	    else:
 		print " - stop"
-		stop()
+		cmd='stop\r'
+	    ser.write(cmd)
 	
     else:
 	    print 'Out of Frame'
@@ -57,5 +48,5 @@ while(True):
         break
 
 cap.release()
-
+ser.close()
 cv2.destroyAllWindows()
